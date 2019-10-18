@@ -1,0 +1,3 @@
+bencode3
+git+https://github.com/ruinernin/foxystreams.git@egg#egg=foxydebrid
+docopt
