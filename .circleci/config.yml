@@ -24,7 +24,7 @@ jobs:
           at: /tmp/
       - run: |
           git checkout release
-          cp /tmp/foxy* ./wheels/
+          cp /tmp/wheels/foxy* ./wheels/
           git add $(git ls-files -o ./wheels)
           git commit -m "release"
           git push
