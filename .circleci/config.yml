@@ -10,10 +10,9 @@ jobs:
           source ./venv/bin/activate
           pip install -r ./requirements.txt
           pip install wheel
-          pip wheel -w ./wheels -r ./requirements.txt ./
-          find wheels -type f ! -name 'foxy*' -delete
+          pip wheel -w /tmp/wheels -r ./requirements.txt ./
       - persist_to_workspace:
-          root: ./
+          root: /tmp/
           paths:
             - wheels
   release:
@@ -22,9 +21,10 @@ jobs:
     steps:
       - checkout
       - attach_workspace:
-          at: ./
+          at: /tmp/
       - run: |
           git checkout release
+          cp /tmp/foxy* ./wheels/
           git add $(git ls-files -o ./wheels)
           git commit -m "release"
           git push
